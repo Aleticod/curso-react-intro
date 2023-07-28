@@ -3,7 +3,16 @@ import './TodoButton.css'
 // Este componente lo insertaremos dentro del componente App
 function TodoButton() {
     return (
-      <button className="CreateTodoButton">+</button>
+      <button 
+        className="CreateTodoButton"
+        onClick={
+          (event) => {
+            console.log('Le diste click');
+            console.log(event);
+            console.log(event.target);
+          }
+        }
+      >+</button>
     );
 }
 export {TodoButton};
