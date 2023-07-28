@@ -1,7 +1,9 @@
+import './TodoList.css'
+
 // Creando el componente todo list
 function TodoList(props) {
     return (
-      <ul>
+      <ul className="TodoList">
         {props.children}
       </ul>
     );

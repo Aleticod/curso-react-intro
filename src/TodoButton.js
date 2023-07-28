@@ -1,8 +1,9 @@
+import './TodoButton.css'
 // Creando un nuevo componente
 // Este componente lo insertaremos dentro del componente App
 function TodoButton() {
     return (
-      <button>Añadir</button>
+      <button className="CreateTodoButton">+</button>
     );
 }
 export {TodoButton};
