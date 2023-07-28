@@ -1,5 +1,11 @@
-import logo from './platzi.webp'; // Importamos el logo desde la ruta actual
+// Importamos un objeto en espcifico
+import { TodoCounter } from './TodoCounter';
+import { TodoSearch } from './TodoSearch';
+import { TodoList } from './TodoList';
+import { TodoItem } from './TodoItem';
+import { TodoButton } from './TodoButton';
 import './App.css'; // Importamos hoja de estilos App.css des la ruta actual
+
 
 // Creamos el componente App (por convencion estas funciones inician con mayuscula)
 function App() {
@@ -8,38 +14,16 @@ function App() {
   // El return el lo que retorna este componente
   return (
     <div className="App">
+      <TodoCounter />
+      <TodoSearch />
 
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edita el archivo <code>src/App.js</code> y guarda para recargar.
-        </p>
-        <a
-          className="App-link"
-          href="https://platzi.com/reactjs"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoList>
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+      </TodoList>
+      <TodoButton />
     </div>
-  );
-}
-
-// Creando un nuevo componente
-// Este componente lo insertaremos dentro del componente App
-function TodoItem() {
-  return (
-    <li>
-      <span>V</span>
-      <p>Llora con la Llorona</p>
-      <span>X</span>
-    </li>
   );
 }
 
