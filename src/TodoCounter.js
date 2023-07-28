@@ -1,7 +1,7 @@
 // Creando el componente todo counter
-function TodoCounter() {
+function TodoCounter({completed, total}) {
     return (
-      <h1>Has copletado 3 de 6 TODOS</h1>
+      <h1>Has copletado { completed } de { total } TODOS</h1>
     );
 }
 

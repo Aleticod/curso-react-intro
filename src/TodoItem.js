@@ -1,10 +1,10 @@
 // Creando un nuevo componente
 // Este componente lo insertaremos dentro del componente App
-function TodoItem() {
+function TodoItem({ text }) {
     return (
       <li>
         <span>V</span>
-        <p>Llora con la Llorona</p>
+        <p>{text}</p>
         <span>X</span>
       </li>
     );
