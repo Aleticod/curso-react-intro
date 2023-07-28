@@ -1,21 +1,21 @@
+import React from 'react';
 import './TodoSearch.css'
 
 // Creando el componente todo search
 function TodoSearch() {
-    return (
-      <input 
-        placeholder="Cortar Cebolla" 
-        className="TodoSearch"
-        onChange={
-          (event) => {
-            console.log('Escribirste algo');
-            console.log(event);
-            console.log(event.target);
-            console.log(event.target.value);
-          }
+  const [searchValue, setSearchValue] = React.useState('');
+  return (
+    <input 
+      placeholder="Cortar Cebolla" 
+      className="TodoSearch"
+      value={searchValue}
+      onChange={
+        (event) => {
+          setSearchValue(event.target.value)
         }
-      />
-    );
-  }
+      }
+    />
+  );
+}
 
   export {TodoSearch};
