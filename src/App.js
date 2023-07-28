@@ -22,10 +22,15 @@ function App() {
   const [searchValue, setSearchValue] = React.useState(''); // Uso de estados se inicializa la funcion useState
   console.log(searchValue)
 
+  // Estados derivados
   const completedTodos = todos.filter(todo => !!todo.completed).length;
   const totalTodos = todos.length;
 
-
+  const searchedTodos = todos.filter( (todo) => {
+    const todoText = todo.text.toLowerCase();
+    const searchText = searchValue.toLowerCase();
+    return todoText.includes(searchText);
+  });
   // Este componente retorna un xml (jsx)
   // ClassName es transpilado por babel como class de html
   // El return el lo que retorna este componente
@@ -38,7 +43,7 @@ function App() {
       <TodoList>
         {/* Todo lo que se encuentra dentro de un componente react los define por defecto como children b */}
         {/* Por cada objeto que se encuentra de los todos array renderizamos un todoItem */}
-        {todos.map(todo => (<TodoItem key={todo.text}  text={todo.text} completed={todo.completed} />))}
+        {searchedTodos.map(todo => (<TodoItem key={todo.text}  text={todo.text} completed={todo.completed} />))}
       </TodoList>
       <TodoButton />
     </React.Fragment>
