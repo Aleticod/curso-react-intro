@@ -8,17 +8,34 @@ import './App.css'; // Importamos hoja de estilos App.css des la ruta actual
 import React from 'react';
 
 // Un array que va a representar los objetos de nuestro todos
-const defaultTodos = [
-  { text: 'Cortar Cebolla ', completed: true },
-  { text: 'Tomar el curso de React ', completed: true },
-  { text: 'Llorar con la llorona ', completed: false },
-  { text: 'Jugat futbool', completed: false },
+// const defaultTodos = [
+//   { text: 'Cortar Cebolla ', completed: true },
+//   { text: 'Tomar el curso de React ', completed: true },
+//   { text: 'Llorar con la llorona ', completed: false },
+//   { text: 'Jugat futbool', completed: false },
 
-];
+// ];
+
+// const defaultTodosString = JSON.stringify(defaultTodos)
+
+// localStorage.setItem('TODOS_V1', defaultTodosString)
+
+// localStorage.removeItem('TODOS_V1')
 
 // Creamos el componente App (por convencion estas funciones inician con mayuscula)
 function App() {
-  const [todos, setTodos] = React.useState(defaultTodos);
+  const localStorageTodos = localStorage.getItem('TODOS_V1');
+  let parsedTodos;
+
+  if (!localStorageTodos){
+    localStorage.setItem('TODOS_V1', JSON.stringify([]));
+    parsedTodos = [];
+  }
+  else{
+    parsedTodos = JSON.parse(localStorageTodos);
+  }
+  
+  const [todos, setTodos] = React.useState(parsedTodos);
   const [searchValue, setSearchValue] = React.useState(''); // Uso de estados se inicializa la funcion useState
   
   // Estados derivados
