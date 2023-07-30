@@ -1,12 +1,8 @@
 // Importamos un objeto en espcifico
-import { TodoCounter } from '../TodoCounter';
-import { TodoSearch } from '../TodoSearch';
-import { TodoList } from '../TodoList';
-import { TodoItem } from '../TodoItem';
-import { TodoButton } from '../TodoButton';
 import './App.css'; // Importamos hoja de estilos App.css des la ruta actual
 import React from 'react';
 import { useLocalStorage } from './useLocalStorage';
+import { AppUI } from './AppUI';
 
 // Un array que va a representar los objetos de nuestro todos
 // const defaultTodos = [
@@ -59,30 +55,17 @@ function App() {
     newTodos.splice(todoIndex, 1)
     setTodos(newTodos)
   };
-  // Este componente retorna un xml (jsx)
-  // ClassName es transpilado por babel como class de html
-  // El return el lo que retorna este componente
-  return ( //el return de un componente es un elemento
-    // React Fragment no se renderiza
-    <React.Fragment>
-      <TodoCounter completed={completedTodos} total={totalTodos} />
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
-      <TodoList>
-        {/* Todo lo que se encuentra dentro de un componente react los define por defecto como children b */}
-        {/* Por cada objeto que se encuentra de los todos array renderizamos un todoItem */}
-        {searchedTodos.map(todo => (
-          <TodoItem 
-            key={todo.text} 
-            text={todo.text} 
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
-      <TodoButton />
-    </React.Fragment>
+  return (
+    <AppUI 
+    completedTodos={completedTodos}
+    totalTodos={totalTodos}
+    searchValue={searchValue}
+    setSearchValue={setSearchValue}
+    searchedTodos={searchedTodos}
+    completeTodo={completeTodo}
+    deleteTodo={ deleteTodo}
+    />
   );
 }
 
