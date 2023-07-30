@@ -1,11 +1,12 @@
 // Importamos un objeto en espcifico
-import { TodoCounter } from './TodoCounter';
-import { TodoSearch } from './TodoSearch';
-import { TodoList } from './TodoList';
-import { TodoItem } from './TodoItem';
-import { TodoButton } from './TodoButton';
+import { TodoCounter } from '../TodoCounter';
+import { TodoSearch } from '../TodoSearch';
+import { TodoList } from '../TodoList';
+import { TodoItem } from '../TodoItem';
+import { TodoButton } from '../TodoButton';
 import './App.css'; // Importamos hoja de estilos App.css des la ruta actual
 import React from 'react';
+import { useLocalStorage } from './useLocalStorage';
 
 // Un array que va a representar los objetos de nuestro todos
 // const defaultTodos = [
@@ -25,28 +26,6 @@ import React from 'react';
 // Creamos el componente App (por convencion estas funciones inician con mayuscula)
 
 // Custom hooks
-function useLocalStorage(itemName, initialItem) {
-
-  const localStorageItem = localStorage.getItem(itemName);
-  let parsedItem;
-
-  if (!localStorageItem) {
-    localStorage.setItem(itemName, JSON.stringify(initialItem));
-    parsedItem = initialItem;
-  }
-  else {
-    parsedItem = JSON.parse(localStorageItem)
-  }
-
-  const [item, setItem] = React.useState(parsedItem);
-
-  const saveItem = (newItem) => {
-    localStorage.setItem(itemName, JSON.stringify(newItem));
-    setItem(newItem)
-  }
-
-  return [item, saveItem]
-}
 
 function App() {
   
