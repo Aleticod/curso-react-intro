@@ -23,19 +23,34 @@ import React from 'react';
 // localStorage.removeItem('TODOS_V1')
 
 // Creamos el componente App (por convencion estas funciones inician con mayuscula)
-function App() {
-  const localStorageTodos = localStorage.getItem('TODOS_V1');
-  let parsedTodos;
 
-  if (!localStorageTodos){
-    localStorage.setItem('TODOS_V1', JSON.stringify([]));
-    parsedTodos = [];
+// Custom hooks
+function useLocalStorage(itemName, initialItem) {
+
+  const localStorageItem = localStorage.getItem(itemName);
+  let parsedItem;
+
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialItem));
+    parsedItem = initialItem;
   }
-  else{
-    parsedTodos = JSON.parse(localStorageTodos);
+  else {
+    parsedItem = JSON.parse(localStorageItem)
   }
+
+  const [item, setItem] = React.useState(parsedItem);
+
+  const saveItem = (newItem) => {
+    localStorage.setItem(itemName, JSON.stringify(newItem));
+    setItem(newItem)
+  }
+
+  return [item, saveItem]
+}
+
+function App() {
   
-  const [todos, setTodos] = React.useState(parsedTodos);
+  const [todos, setTodos] = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = React.useState(''); // Uso de estados se inicializa la funcion useState
   
   // Estados derivados
